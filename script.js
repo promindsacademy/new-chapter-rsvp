@@ -64,9 +64,7 @@
   })();
 
   // ---------- backend endpoint (Google Apps Script Web App) ----------
-  // Deploy Code.gs as a Web App ("Execute as: Me", "Who has access: Anyone"),
-  // then paste the /exec URL below and push.
-  var ENDPOINT = "__APPS_SCRIPT_URL__";
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbyEfWG06lkw2XqcCvpbxVr3y1cUFkfd0juOK7txGi3e8KlLFQoU6yOFauV9US9AvvKt/exec";
   var endpointReady = ENDPOINT.indexOf("__") !== 0;
 
   function refreshTally(){
