@@ -167,27 +167,11 @@
   }
 
   document.getElementById("icsBtn").addEventListener("click", function(){
-    var BS = String.fromCharCode(92);
-    var CRLF = String.fromCharCode(13, 10);
-    var ics = [
-      "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Prominds//New Chapter//EN","BEGIN:VEVENT",
-      "UID:" + Date.now() + "@prominds",
-      "DTSTAMP:20260911T000000Z",
-      "DTSTART:20261003T013000Z",
-      "DTEND:20261003T053000Z",
-      "SUMMARY:Prominds New Chapter — Grand Opening",
-      "LOCATION:2-08-01" + BS + ", Tower 2" + BS + ", VSQ@PJCC" + BS + ", Jalan Utara" + BS + ", 46200 Petaling Jaya" + BS + ", Selangor",
-      "DESCRIPTION:诚挚邀请您与我们一起见证 Prominds 的全新篇章。",
-      "END:VEVENT","END:VCALENDAR"
-    ].join(CRLF);
-    var blob = new Blob([ics], {type:"text/calendar"});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    a.href = url;
-    a.download = "Prominds-New-Chapter.ics";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
+    var text = encodeURIComponent("Prominds New Chapter — Grand Opening");
+    var dates = "20261003T013000Z/20261003T053000Z";
+    var details = encodeURIComponent("诚挚邀请您与我们一起见证 Prominds 的全新篇章。");
+    var location = encodeURIComponent("2-08-01, Tower 2, VSQ@PJCC, Jalan Utara, 46200 Petaling Jaya, Selangor");
+    var url = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + text + "&dates=" + dates + "&details=" + details + "&location=" + location + "&sf=true&output=xml";
+    window.open(url, "_blank", "noopener");
   });
 })();
