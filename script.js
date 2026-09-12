@@ -112,6 +112,7 @@
     var role = document.getElementById("fRole").value;
     var attending = document.querySelector("input[name=attend]:checked").value;
     var remark = document.getElementById("fRemark").value.trim();
+    var invitedBy = document.getElementById("fInvitedBy").value.trim();
 
     if(!name || !contact || !role){
       errEl.textContent = "请填写姓名、联络方式和身份。";
@@ -133,6 +134,7 @@
       attending: attending,
       guests: attending === "是" ? guests : 0,
       remark: remark,
+      invitedBy: invitedBy,
       submittedAt: new Date().toISOString()
     };
 

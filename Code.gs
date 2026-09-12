@@ -17,18 +17,20 @@ function doPost(e) {
     var lock = LockService.getScriptLock();
     lock.waitLock(10000);
     try {
-      var no = sheet.getLastRow(); // header occupies row 1, so lastRow == next No.
       var attendCell = data.attending === '是'
         ? ('出席' + (data.guests ? (' +' + data.guests) : ''))
         : '不出席';
       sheet.appendRow([
-        no,
+        '',
         data.name || '',
         data.contact || '',
         data.role || '',
         data.remark || '',
-        attendCell
+        attendCell,
+        data.invitedBy || ''
       ]);
+      var newRow = sheet.getLastRow();
+      sheet.getRange(newRow, 1).setFormula('=ROW()-2');
     } finally {
       lock.releaseLock();
     }
